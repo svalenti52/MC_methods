@@ -25,7 +25,7 @@ int main() {
         return count_if_six == 0;
     };
 
-    MonteCarloSimulation_redo<int, double, DIST::UniformIntegral> monteCarloSimulation(
+    MonteCarloSimulation_alpha<int, double, DIST::UniformIntegral> monteCarloSimulation(
             10'000'000,
             condition_met,
             four_rolls
