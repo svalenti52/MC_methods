@@ -21,18 +21,18 @@ int main() {
 
     int discrete_time = 1;
 
-    auto condition_met = [&discrete_time, &histogram](Distribution<bool, DIST::BernoulliIntegral>& i_coin,
-                            Distribution<int, DIST::UniformIntegral>& i_state,
+    auto condition_met = [&discrete_time, &histogram](Distribution<bool, DIST::BernoulliIntegral>& _coin,
+                            Distribution<int, DIST::UniformIntegral>& _state,
                             double& stake) -> bool {
 
         stake -= 5.0;
 
         double winnings = 1.0;
 
-        while ( i_coin.events[0] ) {
+        while ( _coin.events[0] ) {
             stake += winnings;
             winnings *= 2.0;
-            i_coin.reload_random_values();
+            _coin.reload_random_values();
         }
 
         histogram.add_to_bin(discrete_time, stake);
