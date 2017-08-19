@@ -25,7 +25,7 @@ int main() {
         int sum = i_dice.sum();
 
         if (sum == 7 || sum == 11) return true;
-        else if (sum ==2 || sum ==3 || sum ==12) return false;
+        if (sum ==2 || sum ==3 || sum ==12) return false;
 
         int point = sum;
 
@@ -36,7 +36,7 @@ int main() {
             sum = i_dice.sum();
 
             if ( sum == point ) return true;
-            else if ( sum == 7 ) return false;
+            if ( sum == 7 ) return false;
         }
     };
 
