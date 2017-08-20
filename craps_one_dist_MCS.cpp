@@ -4,23 +4,21 @@
  *
  */
 
-#include <val/montecarlo/MonteCarloSim.h>
+#include <val/montecarlo/MonteCarloSim_beta.h>
 #include <val/util.h>
 
-using DIST = DistributionType;
+using UNIFORM_INTEGRAL_PARAMS = Distribution<int, int, std::uniform_int_distribution>;
 
 int main() {
 
     const int nr_events_per_roll_sequence = 2;
 
-    Distribution<int, DIST::UniformIntegral> dice(1, 6, nr_events_per_roll_sequence);
-    Distribution<int, DIST::UniformIntegral> blank(1, 6, 0);
-
+    UNIFORM_INTEGRAL_PARAMS dice(1, 6, nr_events_per_roll_sequence);
 
     auto condition_met = [](
-            Distribution<int, DIST::UniformIntegral>& i_dice,
-            Distribution<int, DIST::UniformIntegral>& i_blank,
-            double& iv) -> bool {
+            UNIFORM_INTEGRAL_PARAMS& i_dice,
+            double& iv,
+            DRE& dre) -> bool {
 
         int sum = i_dice.sum();
 
@@ -31,7 +29,7 @@ int main() {
 
         while ( true ) {
 
-            i_dice.reload_random_values();
+            i_dice.reload_random_values(dre);
 
             sum = i_dice.sum();
 
@@ -40,12 +38,12 @@ int main() {
         }
     };
 
-    MonteCarloSimulation<int, int, DIST::UniformIntegral, DIST::UniformIntegral>
+    MonteCarloSimulation<int, double, int, std::uniform_int_distribution>
             monteCarloSimulation(
             10'000'000,
+            1,
             condition_met,
-            dice,
-            blank
+            dice
     );
 
     StopWatch stopWatch;
