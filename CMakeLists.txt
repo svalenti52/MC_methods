@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 project(MC_methods)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 
 add_executable(CRAPS_ORIG craps_orig.cpp)
 add_executable(CRAPS_MCS craps_MCS.cpp)

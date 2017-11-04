@@ -20,10 +20,13 @@ int main() {
             double& iv,
             DRE& dre) -> bool {
 
+        const bool Won = true;
+        const bool Lost = false;
+
         int sum = i_dice.sum();
 
-        if (sum == 7 || sum == 11) return true;
-        if (sum ==2 || sum ==3 || sum ==12) return false;
+        if (sum == 7 || sum == 11) return Won;
+        if (sum ==2 || sum ==3 || sum ==12) return Lost;
 
         int point = sum;
 
@@ -33,8 +36,8 @@ int main() {
 
             sum = i_dice.sum();
 
-            if ( sum == point ) return true;
-            if ( sum == 7 ) return false;
+            if ( sum == point ) return Won;
+            if ( sum == 7 ) return Lost;
         }
     };
 
