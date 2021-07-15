@@ -12,7 +12,7 @@ using DIST = DistributionType;
 
 int main() {
 
-    Distribution<bool, DIST::BernoulliIntegral> coin(0.5, 1, 7);
+    Distribution<bool, DIST::BernoulliIntegral> coin(0.5, 1, 1);
     Distribution<int, DIST::UniformIntegral> state(1, 6, 0);
 
     const int nr_trials = 4'000;
@@ -51,7 +51,7 @@ int main() {
 
     monteCarloSimulation.print_result();
 
-    std::ofstream histogram_file("/home/graph/histogram.txt");
+    std::ofstream histogram_file("/home/svale/graph/histogram.txt");
     histogram_file << histogram << '\n';
 
 }
